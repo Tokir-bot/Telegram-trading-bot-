@@ -12,14 +12,12 @@ BOT_TOKEN = "7875515823:AAHTTzPVTWPZLi8RE4xURGE5dnmUh1eoaT0"
 # === ✅ Google Sheets Setup ===
 SHEET_NAME = "Trade Journal"
 
-# Google Sheets auth
+
+# Google Sheets Auth
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = import os
-import json
 creds_dict = json.loads(os.environ["CREDS_JSON"])
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
-sheet = client.open(SHEET_NAME).sheet1
 
 # === Logging Config ===
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
